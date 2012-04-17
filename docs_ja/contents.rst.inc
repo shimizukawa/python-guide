@@ -1,14 +1,20 @@
-Getting Started
+.. Getting Started
+
+はじめよう
 ---------------
 
-This part of the guide focuses on setting up your Python environment.
+.. This part of the guide focuses on setting up your Python environment.
+
+このパートではPython環境の設定についていくつかのガイドを紹介します。
 
 .. toctree::
    :maxdepth: 2
 
    starting/which-python
 
-- Properly Install Python
+.. - Properly Install Python
+
+- 適切なPythonインストール
 
  .. toctree::
     :maxdepth: 1
@@ -19,10 +25,14 @@ This part of the guide focuses on setting up your Python environment.
 
 
 
-Writing Great Code
+.. Writing Great Code
+
+偉大なコードを書く
 ------------------
 
-This part of the guide focuses on best practices for writing Python code.
+.. This part of the guide focuses on best practices for writing Python code.
+
+このパートではPythonコードを書く際のベストプラクティスを紹介します。
 
 .. toctree::
    :maxdepth: 2
@@ -35,11 +45,16 @@ This part of the guide focuses on best practices for writing Python code.
 
 
 
-Scenario Guide
+.. Scenario Guide
+
+シナリオガイド
 --------------
 
-This part of the guide focuses on tool and module advice based on
-different scenarios.
+.. This part of the guide focuses on tool and module advice based on
+.. different scenarios.
+
+このパートではシナリオ別にどのようなツールやモジュールを使うと良いのか
+アドバイスします。
 
 .. toctree::
    :maxdepth: 2
@@ -56,10 +71,15 @@ different scenarios.
    scenarios/imaging
 
 
-Shipping Great Code
--------------------
+.. Shipping Great Code
 
-This part of the guide focuses on deploying your Python code.
+偉大なコードを出荷する
+---------------------------
+
+.. This part of the guide focuses on deploying your Python code.
+
+このパートではPythonコードをデプロイする際のガイドを紹介します。
+
 
 .. toctree::
    :maxdepth: 2
@@ -68,7 +88,9 @@ This part of the guide focuses on deploying your Python code.
    shipping/freezing
 
 
-Development Environment
+.. Development Environment
+
+開発環境
 -----------------------
 
 .. toctree::
@@ -80,11 +102,16 @@ Development Environment
 
 
 
-Additional Notes
+.. Additional Notes
+
+その他のノート
 ----------------
 
-This part of the guide, which is mostly prose, begins with some
-background information about Python, then focuses on next steps.
+.. This part of the guide, which is mostly prose, begins with some
+.. background information about Python, then focuses on next steps.
+
+このパートはほとんどが参考文献の紹介ですが、Pythonの背景についての情報や、
+次のステップについて紹介します。
 
 .. toctree::
    :maxdepth: 2
@@ -100,7 +127,9 @@ background information about Python, then focuses on next steps.
 
 --------------------------------------
 
-Contibution notes and legal information are here (for those interested).
+.. Contibution notes and legal information are here (for those interested).
+
+このドキュメントに貢献する方法や、法的な情報です(興味がある人向け)。
 
 .. toctree::
    :maxdepth: 2
