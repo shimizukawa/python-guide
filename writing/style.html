@@ -1,0 +1,399 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Code Style &mdash; pythonguide 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="pythonguide 0.0.1 documentation" href="../index.html" />
+    <link rel="next" title="Documenting Your Code" href="documentation.html" />
+    <link rel="prev" title="Structuring Your Project" href="structure.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="Documenting Your Code"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="structure.html" title="Structuring Your Project"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="../index.html">pythonguide 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="code-style">
+<h1>Code Style<a class="headerlink" href="#code-style" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="idioms">
+<h2>Idioms<a class="headerlink" href="#idioms" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Idiomatic Python code is often referred to as being <em>Pythonic</em>.</p>
+<div class="section" id="unpacking">
+<span id="unpacking-ref"></span><h3>Unpacking<a class="headerlink" href="#unpacking" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you know the length of a list or tuple, you can assign names to its
+elements with unpacking:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">some_list</span><span class="p">):</span>
+    <span class="c"># do something with index and item</span>
+</pre></div>
+</div>
+<p>You can use this to swap variables, as well:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-an-ignored-variable">
+<h3>Create an ignored variable<a class="headerlink" href="#create-an-ignored-variable" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>If you need to assign something (for instance, in <a class="reference internal" href="#unpacking-ref"><em>Unpacking</em></a>) but
+will not need that variable, use <tt class="docutils literal"><span class="pre">_</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;foobar.txt&#39;</span>
+<span class="n">basename</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">rpartition</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p class="last">&#8220;<tt class="docutils literal"><span class="pre">_</span></tt>&#8221; is commonly used as an alias for the <a class="reference external" href="http://docs.python.org/library/gettext.html#gettext.gettext" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">gettext()</span></tt></a>
+function. If your application uses (or may someday use) <a class="reference external" href="http://docs.python.org/library/gettext.html#gettext" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">gettext</span></tt></a>,
+you may want to avoid using <tt class="docutils literal"><span class="pre">_</span></tt> for ignored variables, as you may
+accidentally shadow <a class="reference external" href="http://docs.python.org/library/gettext.html#gettext.gettext" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">gettext()</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="create-a-length-n-list-of-the-same-thing">
+<h3>Create a length-N list of the same thing<a class="headerlink" href="#create-a-length-n-list-of-the-same-thing" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Use the Python list <tt class="docutils literal"><span class="pre">*</span></tt> operator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">four_nones</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-length-n-list-of-lists">
+<h3>Create a length-N list of lists<a class="headerlink" href="#create-a-length-n-list-of-lists" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Because lists are mutable, the <tt class="docutils literal"><span class="pre">*</span></tt> operator (as above) will create a list
+of N references to the <cite>same</cite> list, which is not likely what you want.
+Instead, use a list comprehension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">four_lists</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="zen-of-python">
+<h2>Zen of Python<a class="headerlink" href="#zen-of-python" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Also known as PEP 20, the guiding principles for Python&#8217;s design.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">this</span>
+<span class="go">The Zen of Python, by Tim Peters</span>
+
+<span class="go">Beautiful is better than ugly.</span>
+<span class="go">Explicit is better than implicit.</span>
+<span class="go">Simple is better than complex.</span>
+<span class="go">Complex is better than complicated.</span>
+<span class="go">Flat is better than nested.</span>
+<span class="go">Sparse is better than dense.</span>
+<span class="go">Readability counts.</span>
+<span class="go">Special cases aren&#39;t special enough to break the rules.</span>
+<span class="go">Although practicality beats purity.</span>
+<span class="go">Errors should never pass silently.</span>
+<span class="go">Unless explicitly silenced.</span>
+<span class="go">In the face of ambiguity, refuse the temptation to guess.</span>
+<span class="go">There should be one-- and preferably only one --obvious way to do it.</span>
+<span class="go">Although that way may not be obvious at first unless you&#39;re Dutch.</span>
+<span class="go">Now is better than never.</span>
+<span class="go">Although never is often better than *right* now.</span>
+<span class="go">If the implementation is hard to explain, it&#39;s a bad idea.</span>
+<span class="go">If the implementation is easy to explain, it may be a good idea.</span>
+<span class="go">Namespaces are one honking great idea -- let&#39;s do more of those!</span>
+</pre></div>
+</div>
+<p>For some examples of good Python style, see <a class="reference external" href="http://stackoverflow.com/questions/228181/the-zen-of-python">this Stack Overflow question</a> or <a class="reference external" href="http://artifex.org/~hblanks/talks/2011/pep20_by_example.pdf">these
+slides from a Python user group</a>.</p>
+</div>
+<div class="section" id="pep-8">
+<h2>PEP 8<a class="headerlink" href="#pep-8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>PEP 8 is the de-facto code style guide for Python.</p>
+<blockquote>
+<div><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP 8</a></div></blockquote>
+<p>Conforming your Python code to PEP 8 is generally a good idea and helps make
+code more consistent when working on projects with other developers. There
+exists a command-line program, <a class="reference external" href="https://github.com/jcrocholl/pep8">pep8</a>,
+that can check your code for conformance. Install it by running the following
+command in your Terminal:</p>
+<div class="highlight-python"><pre>$ pip install pep8</pre>
+</div>
+<p>Then run it on a file or series of files to get a report of any violations.</p>
+<div class="highlight-python"><pre>$ pep8 optparse.py
+optparse.py:69:11: E401 multiple imports on one line
+optparse.py:77:1: E302 expected 2 blank lines, found 1
+optparse.py:88:5: E301 expected 1 blank line, found 0
+optparse.py:222:34: W602 deprecated form of raising exception
+optparse.py:347:31: E211 whitespace before '('
+optparse.py:357:17: E201 whitespace after '{'
+optparse.py:472:29: E221 multiple spaces before operator
+optparse.py:544:21: W601 .has_key() is deprecated, use 'in'</pre>
+</div>
+<p>Here are some conventions you should follow to make your code easier to read.</p>
+</div>
+<div class="section" id="check-if-variable-equals-a-constant">
+<h2>Check if variable equals a constant<a class="headerlink" href="#check-if-variable-equals-a-constant" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>You don&#8217;t need to explicitly compare a value to True, or None, or 0 - you can
+just add it to the if statement. See <a class="reference external" href="http://docs.python.org/library/stdtypes.html#truth-value-testing">Truth Value Testing</a> for a
+list of what is considered false.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;True!&#39;</span>
+
+<span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is None!&#39;</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Just check the value</span>
+<span class="k">if</span> <span class="n">attr</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is truthy!&#39;</span>
+
+<span class="c"># or check for the opposite</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is falsey!&#39;</span>
+
+<span class="c"># or, since None is considered false, explicity check for it</span>
+<span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;attr is None!&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-a-dictionary-element">
+<h2>Access a Dictionary Element<a class="headerlink" href="#access-a-dictionary-element" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Don&#8217;t use the <tt class="docutils literal"><span class="pre">has_key</span></tt> function. Instead use <tt class="docutils literal"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">d</span></tt> syntax, or pass
+a default argument to <tt class="docutils literal"><span class="pre">get</span></tt>.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hello&#39;</span><span class="p">:</span> <span class="s">&#39;world&#39;</span><span class="p">}</span>
+<span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;hello&#39;</span><span class="p">]</span>    <span class="c"># prints &#39;world&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;default_value&#39;</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hello&#39;</span><span class="p">:</span> <span class="s">&#39;world&#39;</span><span class="p">}</span>
+
+<span class="k">print</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">,</span> <span class="s">&#39;default_value&#39;</span><span class="p">)</span> <span class="c"># prints &#39;world&#39;</span>
+<span class="k">print</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;thingy&#39;</span><span class="p">,</span> <span class="s">&#39;default_value&#39;</span><span class="p">)</span> <span class="c"># prints &#39;default_value&#39;</span>
+
+<span class="c"># Or:</span>
+<span class="k">if</span> <span class="s">&#39;hello&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;hello&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="short-ways-to-manipulate-lists">
+<h2>Short Ways to Manipulate Lists<a class="headerlink" href="#short-ways-to-manipulate-lists" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">List comprehensions</a>
+provide a powerful, concise way to work with lists. Also, the <a class="reference external" href="http://docs.python.org/library/functions.html#map">map</a> and <a class="reference external" href="http://docs.python.org/library/functions.html#filter">filter</a> functions can perform
+operations on lists using a different concise syntax.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Filter elements less than 5</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Add three to all list members.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+<span class="c"># Or:</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use <a class="reference external" href="http://docs.python.org/library/functions.html#enumerate">enumerate</a> to
+keep a count of your place in the list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">item</span>
+<span class="c"># prints</span>
+<span class="c"># 0, 3</span>
+<span class="c"># 1, 4</span>
+<span class="c"># 2, 5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-from-a-file">
+<h2>Read From a File<a class="headerlink" href="#read-from-a-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Use the <tt class="docutils literal"><span class="pre">with</span> <span class="pre">open</span></tt> syntax to read from files. This will automatically close
+files for you.</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file.txt&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">a</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="returning-multiple-values-from-a-function">
+<h2>Returning Multiple Values from a Function<a class="headerlink" href="#returning-multiple-values-from-a-function" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Python supports returning multiple values from a function as a comma-separated
+list, so you don&#8217;t have to create an object or dictionary and pack multiple
+values in before you return</p>
+<p><strong>Bad</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">math_func</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;square&#39;</span><span class="p">:</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;cube&#39;</span><span class="p">:</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">math_func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;square&#39;</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;cube&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Good</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">math_func</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="n">square</span><span class="p">,</span> <span class="n">cube</span> <span class="o">=</span> <span class="n">math_func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h1><a href="http://python-guide.org">Python Guide.</a></h1>
+<p>
+  This opinionated guide exists to provide both novice and expert Python developers a best-practice handbook to the installation, configuration, and usage of Python on a daily basis.
+</p>
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Code Style</a><ul>
+<li><a class="reference internal" href="#idioms">Idioms</a><ul>
+<li><a class="reference internal" href="#unpacking">Unpacking</a></li>
+<li><a class="reference internal" href="#create-an-ignored-variable">Create an ignored variable</a></li>
+<li><a class="reference internal" href="#create-a-length-n-list-of-the-same-thing">Create a length-N list of the same thing</a></li>
+<li><a class="reference internal" href="#create-a-length-n-list-of-lists">Create a length-N list of lists</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zen-of-python">Zen of Python</a></li>
+<li><a class="reference internal" href="#pep-8">PEP 8</a></li>
+<li><a class="reference internal" href="#check-if-variable-equals-a-constant">Check if variable equals a constant</a></li>
+<li><a class="reference internal" href="#access-a-dictionary-element">Access a Dictionary Element</a></li>
+<li><a class="reference internal" href="#short-ways-to-manipulate-lists">Short Ways to Manipulate Lists</a></li>
+<li><a class="reference internal" href="#read-from-a-file">Read From a File</a></li>
+<li><a class="reference internal" href="#returning-multiple-values-from-a-function">Returning Multiple Values from a Function</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="structure.html" title="前の章へ">Structuring Your Project</a></li>
+      <li>Next: <a href="documentation.html" title="次の章へ">Documenting Your Code</a></li>
+  </ul></li>
+</ul>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/writing/style.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2012. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> Project. <a href="http://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Share-Alike 3.0</a>..
+    </div>
+    <a href="https://github.com/kennethreitz/python-guide" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+    </a>
+
+    <script type="text/javascript">
+
+      var _gaq2 = _gaq2 || [];
+      _gaq2.push(['_setAccount', 'UA-8742933-10']);
+      _gaq2.push(['_setDomainName', 'none']);
+      _gaq2.push(['_setAllowLinker', true]);
+      _gaq2.push(['_trackPageview']);
+
+      (function() {
+        var ga2 = document.createElement('script'); ga.type = 'text/javascript'; ga2.async = true;
+        ga2.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga2, s);
+      })();
+
+    </script>
+
+    <script type="text/javascript">
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id',
+                       '4ddc1cfaf5a1f50fcc000001');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+  </body>
+</html>
